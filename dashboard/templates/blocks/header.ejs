@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>AntiAlt.xyz</title>
+    <meta charset="utf-8">
+    <link rel="icon" sizes="192x192" href="http://antialt.xyz/public/logo.png">
+    <meta property="og:title" content="AntiAlt">
+    <meta property="og:site_name" content="Discord Verified Bot">
+    <meta property="og:image" content="http://antialt.xyz/public/logo.png">
+    <meta property="og:description" content="Protect your server against alts and multi-accounts with AntiAlt!">
+    <meta name="theme-color" content="#0084FF">
+    <link rel="stylesheet" href="/public/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="/public/bootstrap.min.js"></script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="/public/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand rainbow-text" href="/"><b>AntiAlt.xyz</b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="/invite">Invite bot</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="/support">Support server</a>
+                    </li>
+                        <% if(user) { %>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img class="rounded-circle" width="25" height="25" src="<%= `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}` %>">
+                                    <%= user.username %>#<%= user.discriminator %>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right bg-dark text-white" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item bg-dark text-white" href="/dashboard">Dashboard</a>
+                                    <a class="dropdown-item bg-dark text-white" href="/logout">Logout</a>
+                                </div>
+                            </li>
+                          <% } else { %>
+                            <li class="nav-item"><a class="nav-link" href="/login"><img class="rounded-circle" width="25" height="25" src="https://discord.com/assets/f78426a064bc9dd24847519259bc42af.png">&nbsp;
+                                Login!</a></li>                        
+                        <% } %>
+                    </li>
+                </ul>
+            
+        </div>
+    </nav>
+    <div class="container">

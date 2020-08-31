@@ -1,0 +1,32 @@
+{
+  "name": "antialt-original",
+  "version": "3.0.0",
+  "dependencies": {
+    "better-sqlite3": "^7.1.0",
+    "body-parser": "^1.19.0",
+    "common-tags": "^1.8.0",
+    "connect-sqlite3": "^0.9.11",
+    "discord.js": "^12.3.1",
+    "ejs": "^3.1.5",
+    "enmap": "^5.6.1",
+    "express": "^4.17.1",
+    "express-passport": "^0.1.0",
+    "express-session": "^1.17.1",
+    "fs": "0.0.1-security",
+    "greenlock-express": "^4.0.3",
+    "hastebin-gen": "^2.0.5",
+    "helmet": "^4.1.0",
+    "level-session-store": "^2.2.0",
+    "marked": "^1.1.1",
+    "memorystore": "^1.6.2",
+    "moment": "^2.27.0",
+    "moment-duration-format": "^2.3.2",
+    "ms": "^2.1.2",
+    "passport": "^0.4.1",
+    "passport-discord": "^0.1.4",
+    "path": "^0.12.7"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

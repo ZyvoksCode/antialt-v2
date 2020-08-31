@@ -1,0 +1,7 @@
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<% if (guild.icon) { %>
+    <img class="rounded-circle" width="125" height="125" src="<%= `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` %>">
+  <% } else { %>
+    <img class="rounded-circle" width="125" height="125" src="/public/df.png">
+  <% } %>
+      <a onclick="window.location.href = '/dashboard/<%- guild.id %>'"><h1><%= guild.name %></h1></a><br>

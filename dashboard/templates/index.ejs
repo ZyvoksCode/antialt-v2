@@ -1,0 +1,13 @@
+<%- include('blocks/header', {bot, user, path}) %>
+    <img width="125" height="125" class="rounded-circle" src="<%- bot.user.displayAvatarURL({ dynamic: true }) %>">
+    <h1>Why <b class="rainbow-text">AntiAlt?</b></h1>
+    <p>
+        AntiAlt is the first verified bot on Discord that will eliminate every alt and multi-account on your server!<br>
+        We have already been trusted by over <b><%- bot.guilds.cache.size %> servers</b> and <b><%- eval(bot.guilds.cache.map(g => g.members.cache.filter(m => !m.user.bot).size).join(' + '))%> users</b>!
+    </p>        
+
+<a class="btn btn-warning" target="_blank" href="/invite">Invite me to your server!</a>
+<br><br>
+<h4>Join our support server!</h4>
+<iframe src="https://invitewidget.ct8.pl/js?invite=8jQP52j" width="410" height="190" allowtransparency="true" frameborder="0"></iframe>
+<%- include('./blocks/footer') %>

@@ -1,0 +1,44 @@
+<%- include('blocks/header', {bot, user, path}) %>
+
+<img class="rounded-circle" width="125" height="125" src="<%= `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}` %>">
+<h1>Welcome <%- user.username %>!</h1>
+<p>Choose which server you want to manage!</p>
+<table class="table table-dark table-striped">
+<thead>
+    <tr>
+        <th>Icon</th>
+        <th>Name</th>
+        <th>Function</th>
+    </tr>
+</thead>
+<tbody>
+    <% 
+    user.guilds.forEach(guild => { 
+        const permsOnGuild = new perms(guild.permissions);
+        if(!permsOnGuild.has("MANAGE_GUILD")) return;
+      %>
+    <tr>
+        <% if (guild.icon) { %>
+            <td><img class="rounded-circle" width="50" height="50" src="<%= `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png` %>"></td>
+        <% } else { %>
+            <td><img class="rounded-circle" width="50" height="50" src="/public/df.png"></td>
+        <% } %>
+            <td><%= guild.name %></td>
+        <% 
+        let href, text;
+        if(bot.guilds.cache.get(guild.id)) {
+          href = `/dashboard/${guild.id}`;
+          text = "Manage";
+          button = "success";
+        } else {
+          href = `https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&scope=bot&guild_id=${guild.id}&permissions=8`;
+          text = "Invite Bot";
+          button = "info";
+        }
+        %> 
+        <td><a class="btn btn-<%= button %>" href="<%= href %>"><%= text %></a></td>
+    </tr>
+    <% }); %>
+</tbody>
+</table>
+<%- include('./blocks/footer') %>

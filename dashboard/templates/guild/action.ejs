@@ -1,0 +1,94 @@
+<%- include('../blocks/header', {bot, user, path}) %>
+<%- include('../blocks/gnav', {guild}) %>
+<div><center>
+<div class="form-group">
+    <label>Action</label>
+    <div style="width: 50%;" class="input-group mb-3">
+        <select class="form-control text-white bg-dark" id="action" name="action">
+            <option value="-">-</option>
+            <option <% if(bot.settings.get(guild.id, "action") === "ban") { %>selected<% } %> value="ban">Ban User</option>
+            <option <% if(bot.settings.get(guild.id, "action") === "kick") { %>selected<% } %> value="kick">Kick User</option>
+            <option <% if(bot.settings.get(guild.id, "action") === "role") { %>selected<% } %> value="role">Give "Alt Role"</option>
+        </select>
+    </div>
+    <small>When user does not meet requiments</small><br><br>
+</div>
+
+<div class="form-group">
+    <label>Alt Role</label>
+    <div style="width: 50%;" class="input-group mb-3">
+        <select class="form-control text-white bg-dark" id="arole" name="arole">
+            <option value="-">-</option>
+            <optgroup label="Remember: You must first set action!">
+                <% guild.roles.cache.forEach(role => { 
+                    if(role.name === "@everyone") return; %>
+                    <option <% if(bot.settings.get(guild.id, "arole") === role.id) { %>selected<% } %> value="<%- role.id %>"><%- role.name %></option><% }); %>
+            </optgroup>
+        </select>
+    </div>
+    <small>Select ONLY when you set in action</small><br><br>
+</div>
+
+<div class="form-group">
+    <label>Verified Role</label>
+    <div style="width: 50%;" class="input-group mb-3">
+        <select class="form-control text-white bg-dark" id="vrole" name="vrole">
+            <option value="-">-</option>
+            <% guild.roles.cache.forEach(role => { 
+                if(role.name === "@everyone") return;
+                if(bot.settings.get(guild.id, "vrole") !== role.id) { %><option value="<%- role.id %>"><%- role.name %></option><% } %>
+                <% if(bot.settings.get(guild.id, "vrole") === role.id) { %><option selected value="<%- role.id %>"><%- role.name %></option><% }}); %>
+        </select>
+    </div>
+    <small>Give role to verified (non-alts) members</small><br><br>
+</div>
+<div class="info"></div>
+<button type="submit" class="btn btn-primary" id="save">Save</button><br>
+<p><a style="color: red;">*</a> - Required</p>
+</center></div>
+
+<script>
+    $(document).ready(() => {
+        $('#save').click(async () => {
+            const action = $("#action").val()
+            const arole = $('#arole').val()
+            const vrole = $("#vrole").val()
+            const status = "<%- bot.settings.get(guild.id, "status") %>"
+            const days = "<%- bot.settings.get(guild.id, "days") %>"
+            const logs = "<%- bot.settings.get(guild.id, "logs") %>"
+            if(!action || !arole || !vrole) return $('.info').html(`
+            <div class="alert alert-danger" role="alert">
+                Try refresh?
+            </div>
+            `)
+            try{
+                const res = await axios({
+                    url: "/dashboard/<%- guild.id %>/post",
+                    data: {
+                        action,
+                        arole,
+                        vrole,
+                        status,
+                        days,
+                        logs
+                    },
+                    method: "POST"
+                }).then($('.info').html(`
+            <div class="alert alert-success" role="alert">
+                Saved!
+            </div>
+            `)).then(setTimeout(() => {
+                $('.info').html(``)
+            }, 2000))
+            }catch(err) {
+                $('.info').html(`
+            <div class="alert alert-danger" role="alert">
+                ${err.message}
+            </div>
+            `)
+            }
+        })
+    })
+</script>
+
+<% include('../blocks/footer') %>

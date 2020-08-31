@@ -1,0 +1,64 @@
+<%- include('../blocks/header', {bot, user, path}) %>
+<%- include('../blocks/gnav', {guild}) %>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card bg-dark text-white">
+            <div class="card-header">General Settings</div>
+            <div class="card-body">
+                Enable or Disable AntiAlt,<br>
+                Set logs channel,<br>
+                Set required creation account time
+            </div>
+            <div class="card-footer"><a class="btn btn-success" href="/dashboard/<%- guild.id %>/basic">Manage</a></div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card bg-dark text-white">
+            <div class="card-header">Action</div>
+            <div class="card-body">
+                Ban, kick or give "Alt Role",<br>
+                Give role to verified users<br>
+                &nbsp;
+            </div>
+            <div class="card-footer"><a class="btn btn-success" href="/dashboard/<%- guild.id %>/action">Manage</a></div>
+        </div>
+    </div>
+        <div class="col-sm-4"><div class="card bg-dark text-white">
+            <div class="card-header">Custom Messages</div>
+            <div class="card-body">
+                Welcome new user or alt with custom messages!<br>
+                &nbsp;
+            </div>
+            <div class="card-footer"><a class="btn btn-info disabled" disabled>Soon™</a></div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <div class="card bg-dark text-white">
+            <div class="card-header">Reset server settings</div>
+            <div class="card-body">Reset every server settings.<br><b>⚠ Warning:</b> This action can't be undone!</div>
+            <div class="card-footer"><a class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" href>Reset</a></div>
+        </div>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="color: black;" id="exampleModalLabel">Are you sure?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p style="color: black;"><b>⚠ Warning:</b> This action can't be undone!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">No, close it!</button>
+          <a type="button" class="btn btn-danger" href="/dashboard/<%- guild.id %>/reset">Yes, clear <%- guild.name %> settings!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<% include('../blocks/footer') %>

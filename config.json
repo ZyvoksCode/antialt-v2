@@ -1,0 +1,16 @@
+{
+    "prefix": "a!",
+    "token": "no",
+    "owner": "714550610489508050",
+    "altsc": "747899200242581524",
+    "dmtext": "",
+    "yes": "https://i.imgur.com/sG98xFJ.png",
+    "no": "https://i.imgur.com/Slf72S3.png",
+    "info": "https://i.imgur.com/Hm2Bqwi.png",
+    "dashboard": {
+      "callback": "http://antialt.xyz/callback",
+      "secret": "no",
+      "domain": "antialt.xyz",
+      "port": 80
+  }
+}
